@@ -1,0 +1,15 @@
+FROM debian
+MAINTAINER 1337pwny
+EXPOSE 80
+RUN apt update 
+RUN apt -y upgrade
+RUN apt install -y apache2 php libapache2-mod-php php-mcrypt php-mysql
+#TODO: Remove from global dockerfile only needed for joomla
+RUN apt -y install php-gd
+ADD ./assets/run.sh /root/run.sh
+#RUN sed 's/AllowOverride None/AllowOverride All/g' /etc/apache2/apache2.conf
+RUN a2enmod rewrite
+RUN service apache2 stop
+RUN chmod -x /root/run.sh
+ENTRYPOINT ["/bin/bash", "/root/run.sh"]
+
