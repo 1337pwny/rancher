@@ -1,11 +1,12 @@
 version: "2"
 services:
   webserver:
-    image: hub.pihost.org/library/webserver:latest
+    image: 1337pwny/webserver:latest
     links:
       - "database:database"
     volumes:
       - webroot:/var/www/html
+      - config/apache2.conf:/etc/apache2/apache2.conf
     environment:
       safemode: "${safemode}"
   database:
