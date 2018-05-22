@@ -1,0 +1,21 @@
+.catalog:
+  name: Hostincontainer
+  version: "latest"
+  description: "Apache Webserver with Mysql db"
+  minimum_rancher_version: v1.0
+  maintainer: "1337pwny <DO5FRX@itgrufti.de>"
+  uuid: webservice
+  questions:
+    - variable: "databasePassword"
+      description: "passwords for database"
+      label: "Database password"
+      required: true
+      default: "CHANGEME"
+      type: "string"
+    - variable: "safemode"
+      description: "Sets Safemode in PHP Config"
+      label: "safemode (on/off)"
+      required: true
+      default: "on"
+      type: "string"
+

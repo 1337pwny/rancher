@@ -1,0 +1,22 @@
+version: "2"
+services:
+  webserver:
+    image: hub.pihost.org/library/webserver:latest
+    links:
+      - "database:database"
+    volumes:
+      - webroot:/var/www/html
+    environment:
+      safemode: "${safemode}"
+  database:
+    image: mysql:latest
+    volumes:
+      - mysql_data:/var/lib/mysql
+    environment:
+        MYSQL_DATABASE: "webservice"
+        MYSQL_USER: "webservice"
+        MYSQL_PASSWORD: "${databasePassword}"
+        MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+volumes:
+  webroot:
+  mysql_data:
